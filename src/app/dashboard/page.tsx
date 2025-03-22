@@ -53,12 +53,12 @@ const equipmentCategoryData = [
 ];
 
 const collaboratorsByDelegationData = [
-	{ name: "Patrilar", value: 450 },
-	{ name: "Metalusa", value: 280 },
-	{ name: "Modiko", value: 180 },
-	{ name: "Kumpre", value: 120 },
-	{ name: "PT Wine", value: 90 },
-	{ name: "Quatro Cravos", value: 90 },
+	{ name: "Company 01", value: 450 },
+	{ name: "Company 02", value: 280 },
+	{ name: "Company 03", value: 180 },
+	{ name: "Company 04", value: 120 },
+	{ name: "Company 05", value: 90 },
+	{ name: "Company 06", value: 90 },
 ];
 
 // Modificar os dados de aquisição para incluir o código do mês
