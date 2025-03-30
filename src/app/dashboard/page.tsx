@@ -19,8 +19,8 @@ import {
 	TrendingUp,
 	Users,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
 	Bar,
 	BarChart,
@@ -167,7 +167,41 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 export default function DashboardPage() {
 	const router = useRouter();
+	const searchParams = useSearchParams();
+
 	const [activeTab, setActiveTab] = useState("overview");
+	const [mounted, setMounted] = useState(false);
+	const tabParam = searchParams.get("tab");
+	const companyId = searchParams.get("companyId");
+
+	useEffect(() => {
+		// Verificar autenticação de forma mais eficiente
+		const checkAuth = () => {
+			const isAuthenticated = localStorage.getItem("isAuthenticated");
+			if (!isAuthenticated) {
+				router.replace("/");
+			}
+		};
+
+		// Executar apenas no cliente
+		if (typeof window !== "undefined") {
+			checkAuth();
+		}
+
+		setMounted(true);
+
+		// Definir a tab ativa com base no parâmetro da URL
+		if (
+			tabParam &&
+			["overview", "equipment", "people", "organization"].includes(tabParam)
+		) {
+			setActiveTab(tabParam);
+		}
+	}, [router, tabParam]);
+
+	if (!mounted) {
+		return null;
+	}
 
 	// Adicionar função para lidar com clique no gráfico de categorias
 	const handleCategoryClick = (data: any) => {
