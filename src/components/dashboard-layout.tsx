@@ -12,8 +12,9 @@ import {
 	Users,
 	X,
 } from "lucide-react";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation"; // Importe usePathname
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { Button } from "./ui/button";
 
@@ -29,44 +30,49 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 	// Logout user
 	const handleLogout = () => {
 		localStorage.removeItem("isAuthenticated");
-		router.push("/");
+		router.replace("/");
 	};
 
-	const routes = [
-		{
-			path: "/dashboard",
-			label: "Dashboard",
-			icon: <LayoutDashboard className="mr-2 h-5 w-5" />,
-		},
-		{
-			path: "/dashboard/products",
-			label: "Produtos",
-			icon: <Package className="mr-2 h-5 w-5" />,
-		},
-		{
-			path: "/dashboard/collaborators",
-			label: "Colaboradores",
-			icon: <Users className="mr-2 h-5 w-5" />,
-		},
-		{
-			path: "/dashboard/companies",
-			label: "Empresas",
-			icon: <Building2 className="mr-2 h-5 w-5" />,
-		},
-	];
-
-	// Prefetch all routes on mount
-	useEffect(() => {
-		const prefetchRoutes = async () => {
-			for (const route of routes) {
-				router.prefetch(route.path);
-			}
-			// Prefetch additional routes for Delegations and Branches
-			router.prefetch("/dashboard/delegations");
-			router.prefetch("/dashboard/branches");
-		};
-		prefetchRoutes();
-	}, [router]);
+	const routes = useMemo(
+		() => [
+			{
+				path: "/dashboard",
+				label: "Dashboard",
+				icon: <LayoutDashboard className="mr-2 h-5 w-5" />,
+			},
+			{
+				path: "/dashboard/products",
+				label: "Produtos",
+				icon: <Package className="mr-2 h-5 w-5" />,
+			},
+			{
+				path: "/dashboard/collaborators",
+				label: "Colaboradores",
+				icon: <Users className="mr-2 h-5 w-5" />,
+			},
+			{
+				path: "/dashboard/companies",
+				label: "Empresas",
+				icon: <Building2 className="mr-2 h-5 w-5" />,
+			},
+			{
+				path: "/dashboard/delegations",
+				label: "Delegações",
+				icon: <GitBranch className="mr-2 h-5 w-5" />,
+			},
+			{
+				path: "/dashboard/branches",
+				label: "Filiais",
+				icon: <Network className="mr-2 h-5 w-5" />,
+			},
+			{
+				path: "/dashboard/configurations",
+				label: "Configurações",
+				icon: <Settings className="mr-2 h-5 w-5" />,
+			},
+		],
+		[],
+	);
 
 	// Handle mouse over for prefetch
 	const handleMouseOver = (path: string) => {
@@ -75,7 +81,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
 	// Highlight active route
 	function getButtonClassName(path: string) {
-		return pathname.startsWith(path) ? "border" : "text-gray-900";
+		return pathname === path || pathname.startsWith(`${path}/`)
+			? "border border-blue-500 text-blue-700 bg-blue-100"
+			: "text-gray-900 hover:bg-gray-100";
 	}
 
 	return (
@@ -105,47 +113,19 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 					</div>
 					<nav className="flex-1 p-4 space-y-2">
 						{/* Iterando sobre as rotas para criar os botões */}
-						{routes.map((route) => (
-							<Button
-								key={route.path}
-								variant="ghost"
-								className={`w-full justify-start cursor-pointer ${getButtonClassName(route.path)}`}
-								onClick={() => router.push(route.path)}
-								onMouseOver={() => handleMouseOver(route.path)} // Prefetch on mouse over
-							>
-								{route.icon}
-								{route.label}
-							</Button>
+						{routes.map(({ path, label, icon }) => (
+							<Link key={path} href={path} passHref>
+								<Button
+									variant="ghost"
+									className={`w-full justify-start cursor-pointer ${getButtonClassName(path)}`}
+									onMouseOver={() => handleMouseOver(path)} // Prefetch on mouse over
+									onFocus={() => handleMouseOver(path)} // Accessbility
+								>
+									{icon}
+									{label}
+								</Button>
+							</Link>
 						))}
-
-						<Button
-							aria-label="delegations button"
-							variant="ghost"
-							onMouseOver={() => handleMouseOver("/dashboard/delegations")} // Prefetch on mouse over
-							className="w-full justify-start cursor-pointer"
-						>
-							<GitBranch className="mr-2 h-5 w-5" />
-							Delegações
-						</Button>
-
-						<Button
-							aria-label="branches list button"
-							variant="ghost"
-							onMouseOver={() => handleMouseOver("/dashboard/branches")} // Prefetch on mouse over
-							className="w-full justify-start cursor-pointer"
-						>
-							<Network className="mr-2 h-5 w-5" />
-							Filiais
-						</Button>
-
-						<Button
-							aria-label="configuration button"
-							variant="ghost"
-							className="w-full justify-start cursor-pointer"
-						>
-							<Settings className="mr-2 h-5 w-5" />
-							Configurações
-						</Button>
 					</nav>
 					<div className="p-4 border-t">
 						<Button
