@@ -108,7 +108,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 				<div className="flex flex-col h-full">
 					<div className="p-4 border-b bg-blue-800">
 						<h2 className="text-xl font-bold text-zinc-50 text-center">
-							Patrilar
+							CompanyX
 						</h2>
 					</div>
 					<nav className="flex-1 p-4 space-y-2">
