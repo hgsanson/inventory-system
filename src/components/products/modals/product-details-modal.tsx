@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { categoryMap, statusMap } from "../../data/mappings";
+import { categoryMap, statusMap } from "../../../app/data/mappings";
 import type { Product } from "../../types/product.types";
 
 interface ProductDetailsModalProps {

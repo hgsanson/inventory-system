@@ -28,7 +28,7 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { CalendarIcon } from "lucide-react";
 import { useState } from "react";
-import { categoryMap, statusMap } from "../../data/mappings";
+import { categoryMap, statusMap } from "../../../app/data/mappings";
 import type {
 	NewProduct,
 	ProductCategory,
