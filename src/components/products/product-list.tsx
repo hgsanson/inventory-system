@@ -72,7 +72,7 @@ const ProductList = ({
 	// Aplicar filtros e pesquisa
 	useEffect(() => {
 		let result = [...products];
-
+		W;
 		// Aplicar filtros
 		if (initialCompanyFilter) {
 			result = result.filter(
