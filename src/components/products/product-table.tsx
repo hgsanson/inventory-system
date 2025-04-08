@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { CheckCircle2Icon, InfoIcon, Trash2, WrenchIcon } from "lucide-react";
 import React from "react";
-import { categoryMap, statusMap } from "../data/mappings";
+import { categoryMap, statusMap } from "../../app/data/mappings";
 import type { Intervention, Product } from "../types/product.types";
 import { InterventionList } from "./intervention-list";
 
