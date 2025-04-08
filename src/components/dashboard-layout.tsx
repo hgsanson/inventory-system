@@ -81,7 +81,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
 	// Highlight active route
 	function getButtonClassName(path: string) {
-		return pathname === path || pathname.startsWith(`${path}/`)
+		if (path === "/dashboard") {
+			return pathname === "/dashboard"
+				? "border border-blue-500 text-blue-700 bg-blue-100"
+				: "text-gray-900 hover:bg-gray-100";
+		}
+
+		return pathname.startsWith(path)
 			? "border border-blue-500 text-blue-700 bg-blue-100"
 			: "text-gray-900 hover:bg-gray-100";
 	}
@@ -108,7 +114,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 				<div className="flex flex-col h-full">
 					<div className="p-4 border-b bg-blue-800">
 						<h2 className="text-xl font-bold text-zinc-50 text-center">
-							CompanyX
+							<Link href="/dashboard">CompanyX</Link>
 						</h2>
 					</div>
 					<nav className="flex-1 p-4 space-y-2">

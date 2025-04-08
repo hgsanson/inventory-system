@@ -1,6 +1,6 @@
 "use client";
 
-import { categoryMap, monthDisplay, statusColors } from "../data/mappings";
+import { categoryMap, monthDisplay, statusColors } from "@/data/mappings";
 
 interface FilterDisplayProps {
 	initialStatusFilter?: string | null;

@@ -251,10 +251,10 @@ export default function DashboardPage() {
 	// Função auxiliar para obter o ID da delegação pelo nome
 	const getDelegationIdByName = (name: string): string | null => {
 		const delegationMap: Record<string, string> = {
-			"São Paulo Capital": "1",
-			"Rio de Janeiro": "2",
-			"Belo Horizonte": "3",
-			"Porto Alegre": "4",
+			"Empresa X Capital": "1",
+			"Empresa Y": "2",
+			"Empresa Z": "3",
+			"Empresa XY": "4",
 			Recife: "5",
 		};
 		return delegationMap[name] || null;
@@ -715,11 +715,11 @@ export default function DashboardPage() {
 									<ResponsiveContainer width="100%" height="100%">
 										<BarChart
 											data={[
-												{ name: "São Paulo Capital", value: 32 },
-												{ name: "Rio de Janeiro", value: 18 },
-												{ name: "Belo Horizonte", value: 12 },
-												{ name: "Porto Alegre", value: 8 },
-												{ name: "Recife", value: 15 },
+												{ name: "Empresa 1", value: 32 },
+												{ name: "Empresa 2", value: 18 },
+												{ name: "Empresa 3", value: 12 },
+												{ name: "Empresa 4", value: 8 },
+												{ name: "Empresa 5", value: 15 },
 											]}
 										>
 											<CartesianGrid strokeDasharray="3 3" vertical={false} />
@@ -753,15 +753,15 @@ export default function DashboardPage() {
 										<RechartsPieChart>
 											<Pie
 												data={[
-													{ name: "Sudeste", value: 850, color: "#3b82f6" },
-													{ name: "Sul", value: 350, color: "#10b981" },
-													{ name: "Nordeste", value: 420, color: "#f59e0b" },
+													{ name: "Empresa 01", value: 850, color: "#3b82f6" },
+													{ name: "Empresa 02", value: 350, color: "#10b981" },
+													{ name: "Empresa 03", value: 420, color: "#f59e0b" },
 													{
-														name: "Centro-Oeste",
+														name: "Empresa 04",
 														value: 180,
 														color: "#8b5cf6",
 													},
-													{ name: "Norte", value: 50, color: "#ef4444" },
+													{ name: "Empresa 05", value: 50, color: "#ef4444" },
 												]}
 												cx="50%"
 												cy="50%"
@@ -776,15 +776,15 @@ export default function DashboardPage() {
 												onClick={handleEquipmentsByRegionClick}
 											>
 												{[
-													{ name: "Sudeste", value: 850, color: "#3b82f6" },
-													{ name: "Sul", value: 350, color: "#10b981" },
-													{ name: "Nordeste", value: 420, color: "#f59e0b" },
+													{ name: "Empresa 01", value: 850, color: "#3b82f6" },
+													{ name: "Empresa 02", value: 350, color: "#10b981" },
+													{ name: "Empresa 03", value: 420, color: "#f59e0b" },
 													{
-														name: "Centro-Oeste",
+														name: "Empresa 04",
 														value: 180,
 														color: "#8b5cf6",
 													},
-													{ name: "Norte", value: 50, color: "#ef4444" },
+													{ name: "Empresa 05", value: 50, color: "#ef4444" },
 												].map((entry, index) => (
 													<Cell
 														key={`cell-${index}`}

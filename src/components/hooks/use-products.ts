@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { initialProducts } from "../data/products";
+import { initialProducts } from "../../app/data/products";
 import type { Intervention, NewIntervention } from "../types/product.types";
 import type { Product } from "../types/product.types";
 import { filterProducts } from "../utils/product-utils";

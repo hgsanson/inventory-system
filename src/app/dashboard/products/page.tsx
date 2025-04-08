@@ -1,6 +1,7 @@
 "use client";
 
 import DashboardLayout from "@/components/dashboard-layout";
+import ProductList from "@/components/product-list";
 /* import ProductList from "@/components/product-list"; */
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -40,7 +41,7 @@ export default function ProductsPage() {
 				<h1 className="text-2xl font-bold mb-6">
 					Gerenciamento de Equipamentos
 				</h1>
-				{/* 				<ProductList
+				<ProductList
 					initialCompanyFilter={companyId}
 					initialDelegationFilter={delegationId}
 					initialBranchFilter={branchId}
@@ -50,7 +51,7 @@ export default function ProductsPage() {
 					initialCategoryFilter={category}
 					initialAgeFilter={age}
 					initialRegionFilter={region}
-				/> */}
+				/>
 			</div>
 		</DashboardLayout>
 	);
